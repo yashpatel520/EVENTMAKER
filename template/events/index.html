@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+{% load static %}
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <title>Dvents</title>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta name="HandheldFriendly" content="true"/>
+
+<link rel="stylesheet" href="{% static 'events/assets/css/master.css' %}"/>
+<link rel="icon" type="image/x-icon" href="{% static 'events/favicon.ico' %}"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style>
+.btnn {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 1px 2px;
+  font-size: 2px;
+  cursor: pointer;
+}
+
+/* Darker background on mouse-over */
+.btnn:hover {
+  background-color: RoyalBlue;
+}
+</style>
+
+</head>
+  <body>
+    <!-- Loader-->
+    <div id="page-preloader"><span class="spinner border-t_second_b border-t_prim_a"></span></div>
+    <!-- Loader end-->
+    
+    <div data-header="sticky" data-header-top="200" data-canvas="container" class="l-theme animated-css">
+  
+      
+      <!-- ==========================-->
+      <!-- MOBILE MENU-->
+      <!-- ==========================-->
+      <div data-off-canvas="mobile-slidebar left overlay">
+        <ul class="nav navbar-nav">
+                      <li><a href="{% url 'login' %}" >User</a></li>
+                      <li><a href="{% url 'login' %}" >Manager</a></li>
+                      <li><a href="{% url 'logout' %}" >Logout</a></li>
+                   
+                </ul>
+      </div>
+    
+        
+        
+      <header class="header header-boxed-width header-background-trans header-logo-black header-topbarbox-1-left header-topbarbox-2-right header-navibox-1-left header-navibox-2-right">
+
+        <div class="container container-boxed-width">
+          <nav id="nav" class="navbar">
+            <div class="container">
+              <div class="header-navibox-1">
+                <!-- Mobile Trigger Start-->
+                <button class="menu-mobile-button visible-xs-block js-toggle-mobile-slidebar toggle-menu-button"><i class="toggle-menu-button-icon"><span></span><span></span><span></span><span></span><span></span><span></span></i></button>
+                <!-- Mobile Trigger End--><a href="{% url 'home' %}" class="navbar-brand scroll"><img src="{% static 'events/assets/media/general/logo.png' %}" alt="logo" class="normal-logo"/><img src="{% static 'events/assets/media/general/logo-dark.png' %}" alt="logo" class="scroll-logo hidden-xs"/></a>
+              </div>
+              {% if user.is_authenticated %}
+              <div class="header-navibox-2">
+                <ul class="yamm main-menu nav navbar-nav">
+                  <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle">{{request.user}}<b class="caret"></b></a>
+                    <ul role="menu" class="dropdown-menu">
+                      <li><a href="{% url 'logout' %}" >Logout</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              {% else %}
+
+              <div class="header-navibox-2">
+                <ul class="yamm main-menu nav navbar-nav">
+                  <li class="dropdown"><a  data-toggle="dropdown" class="dropdown-toggle">Login <b class="caret"></b></a>
+                    <ul role="menu" class="dropdown-menu">
+                      <li><a href="{% url 'login' %}" >User</a></li>
+                      <li><a href="{% url 'login' %}" >Manager</a></li>
+                      
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              {% endif %}
+
+            </div>
+          </nav>
+        </div>
+      </header>
+      <!-- end .header-->
+      
+      
+      <div id="main-slider" data-slider-width="100%" data-slider-height="950px" data-slider-arrows="true" data-slider-buttons="false" class="main-slider main-slider_mod-a slider-pro">
+        <div class="sp-slides">
+          <!-- Slide 1-->
+          <div class="sp-slide"><img src="{% static 'events/assets/media/components/b-main-slider/bg-2.jpg' %}" alt="slider" class="sp-image"/>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-8">
+                  <div data-width="100%" data-show-transition="left" data-hide-transition="left" data-show-duration="2000" data-show-delay="1200" data-hide-delay="400" class="main-slider__info sp-layer">We are the Event Management Specialists</div>
+                  <h2 data-width="100%" data-show-transition="left" data-hide-transition="left" data-show-duration="800" data-show-delay="400" data-hide-delay="400" class="main-slider__title sp-layer">we personalize your wedding events</h2>
+                  <div data-width="100%" data-show-transition="left" data-hide-transition="left" data-show-duration="1200" data-show-delay="600" data-hide-delay="400" class="sp-layer">
+                    <div class="main-slider__decor bg-primary"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 2-->
+          <div class="sp-slide"><img src="{% static 'events/assets/media/components/b-main-slider/bg-1.jpg' %}" alt="slider" class="sp-image"/>
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                  <div data-width="100%" data-show-transition="right" data-hide-transition="left" data-show-duration="1200" data-show-delay="2000" data-hide-delay="400" data-vertical="190px" data-horizontal="0" class="main-slider__item-1 sp-layer"><img src="{% static 'events/assets/media/components/b-main-slider/item-1.png' %}" alt="Item"/></div>
+                  <div data-width="100%" data-show-transition="left" data-hide-transition="left" data-show-duration="1200" data-show-delay="2000" data-hide-delay="400" data-vertical="250px" data-horizontal="100%" class="main-slider__item-2 sp-layer"><img src="{% static 'events/assets/media/components/b-main-slider/item-2.png' %}" alt="Item"/></div>
+                  <div data-width="100%" data-show-transition="right" data-hide-transition="left" data-show-duration="1200" data-show-delay="2000" data-hide-delay="400" data-vertical="730px" data-horizontal="0" class="main-slider__item-3 sp-layer"><img src="{% static 'events/assets/media/components/b-main-slider/item-3.png' %}" alt="Item"/></div>
+                  <div data-width="100%" data-show-transition="left" data-hide-transition="left" data-show-duration="2000" data-show-delay="1200" data-hide-delay="400" class="main-slider__info sp-layer">Birthday Event Management Specialists</div>
+                  <div data-width="100%" data-show-transition="left" data-hide-transition="left" data-show-duration="1200" data-show-delay="600" data-hide-delay="400" class="sp-layer">
+                    <div class="main-slider__decor bg-primary"></div>
+                  </div>
+                  <h2 data-width="100%" data-show-transition="left" data-hide-transition="left" data-show-duration="800" data-show-delay="400" data-hide-delay="400" class="main-slider__title sp-layer">celebrate your events<br>that lasts longer</h2>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end .main-slider-->
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="section-area">
+              <div class="b-request-estimate">
+                <div class="b-request-estimate__info">Wedding Functions to Parties and Corporate Events, We offer full Events Management Services!</div>
+                <div class="b-request-estimate__title bg-primary"><span class="ui-decor-2"></span>request your event estimate</div>
+              </div>
+              <!-- end .b-request-estimate-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <section class="section-type-1">
+        <div class="label-vertical">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4"><img src="{% static 'events/assets/media/content/360x460/1.jpg' %}" alt="foto" class="img-w-radius img-responsive"></div>
+              <div class="col-md-8">
+                <div class="section-type-1__inner">
+                  <div class="ui-decor-1"><img src="{% static 'events/assets/media/general/ui-decor-1.png' %}" alt="decor"></div>
+                  <h2 class="ui-title-block">Welcome to<span class="text-primary"> Dvents</span></h2>
+                  <div class="ui-subtitle-block">Making your events smarter & impactful by personalised event management.</div>
+                  <p>We Colaborate with skilled, experienced and innovative Event Managers to Organize the event and make your  special day more special.</p>
+                  <p>We don't allow any of the manager to undertake more than one Event at a time so that he can manage a particular event in more innovative and organized way satisfying all your needs.</p>
+                  <p>We offers complete event planning & management services, programming & production, entertainment & special event coordination, high-quality activities, and event promotion. 
+                  We keep our clients update of every tasks that are asigned to us via tracking page once the event is being undertaken by the manager.
+                  Which helps us to avoid missunderstanding or misscommunication between the manager and client. It also allows us to give satisfactory results at the day of Event.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- b-progress standart-->
+      <div class="section-progress section-progress_mod-b">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12">
+              <ul class="b-progress-list b-progress-list_mod-a list-unstyled">
+                <li class="b-progress-list__item clearfix">
+                  <div class="b-progress-list__inner">
+                    <div class="b-progress-list__label"></div><span data-percent="{{total_event}}" class="b-progress-list__percent js-chart"><span class="js-percent"></span></span><span class="b-progress-list__name">Featured Events</span>
+                  </div>
+                  <div class="b-progress-list__icon text-primary icon-cup"></div>
+                </li>
+                <li class="b-progress-list__item clearfix">
+                  <div class="b-progress-list__inner">
+                    <div class="b-progress-list__label"></div><span data-percent="{{total_customers}}" class="b-progress-list__percent js-chart"><span class="js-percent"></span></span><span class="b-progress-list__name">Loyal Customers</span>
+                  </div>
+                  <div class="b-progress-list__icon text-primary icon-user"></div>
+                </li>
+                <li class="b-progress-list__item clearfix">
+                  <div class="b-progress-list__inner">
+                    <div class="b-progress-list__label"></div><span data-percent="{{total_comments}}" class="b-progress-list__percent js-chart"><span class="js-percent"></span></span><span class="b-progress-list__name">Total Comments</span>
+                  </div>
+                  <div class="b-progress-list__icon text-primary icon-layers"></div>
+                </li>
+                <li class="b-progress-list__item clearfix">
+                  <div class="b-progress-list__inner">
+                    <div class="b-progress-list__label"></div><span data-percent="{{total_events_done}}" class="b-progress-list__percent js-chart"><span class="js-percent"></span></span><span class="b-progress-list__name">Event Completed</span>
+                  </div>
+                  <div class="b-progress-list__icon text-primary icon-badge"></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end b-progress-->
+      
+      <section class="b-services area-bg area-bg_dark area-bg_op_90 parallax">
+        <div class="area-bg__inner">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-5">
+                <div class="ui-decor-1"><img src="{% static 'events/assets/media/general/ui-decor-1.png' %}" alt="decor"/></div>
+                <h2 class="ui-title-block"><span class="text-primary">Dvents</span> Services</h2>
+                <div class="ui-subtitle-block">We make your events smart & impactful by personalised event management services.</div>
+                <p>We Belive in perfection raher than trying up on random ideas. So we alot the professionals and trusted person skilled in organizing and e experienced an event. Because perfectioncomes with Experience. And to make your special movement mre memorable is our first priority. </p>
+              </div>
+              <div class="col-md-7">
+                <div class="bxslider">
+                  <section class="b-advantages-2 b-advantages-2_light"><i class="b-advantages-2__icon flaticon-people"></i>
+                    <div class="b-advantages-2__inner">
+                      <h3 class="b-advantages-2__title ui-title-inner bg-primary_b">Wedding Events</h3>
+                      <div class="b-advantages-2__info">We specialize in organizing fairy-tale weddings to be cherished forever. The theme of the events is meticulously planned with intricate decorations.We respect the different religious customs and rituals followed by people and we arrange every aspect according to the wishes and requirements of the clients.</div>
+                    </div>
+                  </section>
+                  <!-- end .b-advantages-->
+                  <section class="b-advantages-2 b-advantages-2_light"><i class="b-advantages-2__icon flaticon-food"></i>
+                    <div class="b-advantages-2__inner">
+                      <h3 class="b-advantages-2__title ui-title-inner bg-primary_b">Birthday Parties</h3>
+                      <div class="b-advantages-2__info">Celebrating birthday parties for special one is an ultimate fun  family, and friends enjoy together and have a lovely time. We the event planners make the party more enjoyable for the hosts as we take up the responsibility of organizing the birthday party. </div>
+                    </div>
+                  </section>
+                  <!-- end .b-advantages-->
+                  <section class="b-advantages-2 b-advantages-2_light"><i class="b-advantages-2__icon flaticon-karaoke"></i>
+                    <div class="b-advantages-2__inner">
+                      <h3 class="b-advantages-2__title ui-title-inner bg-primary_b">Corporate Seminars</h3>
+                      <div class="b-advantages-2__info">The seminar is perhaps the most common event that planners will organize as it is about the repuataion of the company so not even a single mistake is affordable their. And most seminars are scheduled either as a 1/2 day or a full day.And for those who are planning a multi-day or multi-session conference, need more help as they are busy with hosting the guests and cannot divert their mind to have a look on arrangements.</div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <br>
+      <br>
+      <br>
+      <br>
+      
+      <section class="b-taglines area-bg area-bg_dark parallax">
+        <div class="area-bg__inner">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-10 col-sm-offset-1">
+                <div class="b-taglines__inner">
+                  <h2 class="b-taglines__title">With a full range of Event Planning Services, our Clients have Successful & Prosperous Events!</h2>
+                  <div class="b-taglines__text">We make your events smart & impactful by personalised event management services.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- end b-taglines-->
+      
+      
+      <br>
+      <br>
+      <br>
+      <br>
+      
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <section data-stellar-background-ratio="0.4" class="b-info section-texture section-radius stellar section-texture_green section-radius">
+              <h2 class="b-info__title">Book Your Event With Us!</h2>
+              <div class="b-info__text"> Let’s Get Started</div><a href="{% url 'book' %}" class="b-info__btn btn btn-default btn-sm btn-effect">Book Now</a>
+            </section>
+            <!-- end b-info-->
+          </div>
+          
+        </div>
+      </div>
+      
+       <!-- ==========================-->
+      <!-- Event Table -->
+      <!-- ==========================-->
+      {% if user.is_authenticated %}
+        {% for post in events %}
+        {%if post.confirmation == 'accepted' %}
+       
+      <div data-stellar-background-ratio="0.3" class="section-brands bg-grey section-texture-2 stellar">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12">
+           
+                <h2 class="typography-title">Your  {{post.event_type}} Event Progress </h2>
+                
+                
+               <h5 class="typography-title"><i class="icon icon-user"> </i>   Manager Name : {{post.manager}}<br></h5>
+               <h5 class="typography-title"><i class="icon icon-call-in"></i> Mobile Number: <a href="{{post.profile_id.mobile}}">{{post.manager_profile_id.mobile}}</a></h5>
+               <h5 class="typography-title"> <i class="icon icon-envelope-open"></i> Email Address : <a href="{{post.manager.email}}">{{post.manager.email}}</a></h5>
+               <h5 class="typography-title"> <i class=" fa fa-calendar-check-o"></i> Event Date : {{post.event_date}}</h5>
+                  
+                
+                <br>
+                <div class="table-container">
+                  <table class="table table_primary table-type-1" >
+                    <thead>
+                      <tr>
+                        <th>Event Requirements </th>
+                        <th>Need to work </th>
+                        <th>In process</th>
+                        <th>Done</th>
+                        <th>Cancel </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% if post.Sound_system != 'pending' %}
+                      <tr>
+                        <td>Sound system</td>
+                        <td>
+                          {% if post.Sound_system == 'need_to_work' %}
+                          <h4><i class="icon fa fa-check"></i></h4>
+                          {% else %}
+                          <h4>-</h4>
+                          {% endif %}
+                        </td>
+                         <td>
+                          {% if post.Sound_system == 'in_process' %}
+                          <h4><i class="icon fa fa-check"></i></h4>
+                          {% else %}
+                          <h4>-</h4>
+                          {% endif %}
+                        </td>
+                         <td>
+                          {% if post.Sound_system == 'done' %}
+                          <h4><i class="icon fa fa-check"></i></h4>
+                          {% else %}
+                          <h4>-</h4>
+                          {% endif %}
+                        </td>
+                        <td>
+                          <form action="{% url 'manager_event_view_form' post.id %}" method="POST">
+                              {% csrf_token %}
+                          
+                          {% if post.Sound_system == 'need_to_work' %}
+                              <button type="submit" name="action" value="Sound_system"class="btnn"><i class="material-icons">cancel_presentation</i></button>
+                              
+                            {% else %}
+                            <h4>-</h4>
+                            {% endif %}
+                          </form>
+
+                        </td>
+                      </tr>
+                      {% endif %}
+                      {% if post.Catering != 'not_enroll' %}
+                       <tr>
+                        <td>Catering</td>
+                        <td>
+                          {% if post.Catering == 'need_to_work' %}
+                          <h4><i class="icon fa fa-check"></i></h4>
+                          {% else %}
+                          <h4>-</h4>
+                          {% endif %}
+                        </td>
+                         <td>
+                          {% if post.Catering == 'in_process' %}
+                          <h4><i class="icon fa fa-check"></i></h4>
+                          {% else %}
+                          <h4>-</h4>
+                          {% endif %}
+                        </td>
+                         <td>
+                          {% if post.Catering == 'done' %}
+                          <h4><i class="icon fa fa-check"></i></h4>
+                          {% else %}
+                          <h4>-</h4>
+                          {% endif %}
+                        </td>
+                        <td>
+                        <form action="{% url 'manager_event_view_form' post.id %}" method="POST">
+                              {% csrf_token %}
+                          
+                          {% if post.Catering == 'need_to_work' %}
+                              <button type="submit" name="action" value="Catering"class="btnn"><i class="material-icons">cancel_presentation</i></button>
+                              
+                            {% else %}
+                            <h4>-</h4>
+                            {% endif %}
+                          </form>
+                        </td>
+                      </tr>
+                      {% endif %}
+                      {% if post.Projector != 'not_enroll' %}
+                       <tr>
+                        <td>Projector</td>
+                        <td>
+                          {% if post.Projector == 'need_to_work' %}
+                          <h4><i class="icon fa fa-check"></i></h4>
+                          {% else %}
+                          <h4>-</h4>
+                          {% endif %}
+                        </td>
+                         <td>
+                          {% if post.Projector == 'in_process' %}
+                          <h4><i class="icon fa fa-check"></i></h4>
+                          {% else %}
+                          <h4>-</h4>
+                          {% endif %}
+                        </td>
+                         <td>
+                          {% if post.Projector == 'done' %}
+                          <h4><i class="icon fa fa-check"></i></h4>
+                          {% else %}
+                          <h4>-</h4>
+                          {% endif %}
+                        <td>
+                          <form action="{% url 'manager_event_view_form' post.id %}" method="POST">
+                              {% csrf_token %}
+                          {% if post.Projector == 'need_to_work' %}
+                              <button type="submit" name="action" value="Projector"class="btnn"><i class="material-icons">cancel_presentation</i></button>
+                              
+                            {% else %}
+                            <h4>-</h4>
+                            {% endif %}
+                          </form>
+                        </td>
+                      </tr>
+                      {% endif %}
+                      {% if post.Decoration != 'not_enroll' %}
+                       <tr>
+                        <td>Decoration</td>
+                        <td>
+                          {% if post.Decoration == 'need_to_work' %}
+                          <h4><i class="icon fa fa-check"></i></h4>
+                          {% else %}
+                          <h4>-</h4>
+                          {% endif %}
+                        </td>
+                         <td>
+                          {% if post.Decoration == 'in_process' %}
+                          <h4><i class="icon fa fa-check"></i></h4>
+                          {% else %}
+                          <h4>-</h4>
+                          {% endif %}
+                        </td>
+                         <td>
+                          {% if post.Decoration == 'done' %}
+                          <h4><i class="icon fa fa-check"></i></h4>
+                          {% else %}
+                          <h4>-</h4>
+                          {% endif %}
+                        </td>
+                        <td>
+                          <form action="{% url 'manager_event_view_form' post.id %}" method="POST">
+                              {% csrf_token %}
+                          
+                          {% if post.Decoration == 'need_to_work' %}
+                              <button type="submit" name="action" value="Decoration"class="btnn"><i class="material-icons">cancel_presentation</i></button>
+                              
+                            {% else %}
+                            <h4>-</h4>
+                            {% endif %}
+                          </form>
+                        </td>
+                      </tr>
+                      {% endif %}
+                      {% if post.Photographer != 'not_enroll' %}
+                       <tr>
+                        <td>
+                        Photographer</td>
+                       <td>
+                          {% if post.Photographer == 'need_to_work' %}
+                          <h4><i class="icon fa fa-check"></i></h4>
+                          {% else %}
+                          <h4>-</h4>
+                          {% endif %}
+                        </td>
+                         <td>
+                          {% if post.Photographer == 'in_process' %}
+                          <h4><i class="icon fa fa-check"></i></h4>
+                          {% else %}
+                          <h4>-</h4>
+                          {% endif %}
+                        </td>
+                         <td>
+                          {% if post.Photographer == 'done' %}
+                          <h4><i class="icon fa fa-check"></i></h4>
+                          {% else %}
+                          <h4>-</h4>
+                          {% endif %}
+                        </td>
+                        <td>
+                          <form action="{% url 'manager_event_view_form' post.id %}" method="POST">
+                              {% csrf_token %}
+                          {% if post.Photographer == 'need_to_work' %}
+                              <button type="submit" name="action" value="Photographer"class="btnn"><i class="material-icons">cancel_presentation</i></button>
+                              
+                            {% else %}
+                            <h4>-</h4>
+                            {% endif %}
+                          </form>
+                        </td>
+                      </tr>
+                      {% endif %} 
+                    </tbody>
+                  </table>
+                </div>
+     
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+       
+           
+       <br>
+      <br>
+      <br>
+      <br>
+      
+      <section class="section-team area-bg area-bg_dark parallax">
+        <div class="area-bg__inner">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                
+                <div class="text-center">
+                  <h2 class="ui-title-block"><span class="text-primary"> Dvents</span> Reviews</h2>
+                  <div class="ui-subtitle-block">We make your events smart & impactful by personalised event management services</div>
+                </div>
+                <div data-min480="1" data-min768="1" data-min992="1" data-min1200="1" data-pagination="false" data-navigation="true" data-auto-play="4000" data-stop-on-hover="true" class="owl-carousel owl-theme enable-owl-carousel">
+                  {%for obj in reviews%}
+                  <section class="b-team b-team_light">
+                    
+                    <div class="b-team__inner">
+                      <div class="ui-decor-2 bg-primary"></div>
+                      <h3 class="b-team__name ui-title-inner">{{obj.full_name}}</h3>
+                      <div class="b-team__category">{{obj.subject}}</div>
+                      <div class="b-team__description">{{obj.message}}</div>
+                      
+                    </div>
+                  </section>
+                  <!-- end b-team-->
+                  {% endfor %}
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      
+     <br>
+     <br>
+     <br>
+     <br>
+
+
+      <!-- ==========================-->
+      <!-- Form of FeedBack-->
+      <!-- ==========================-->
+      <div class="block-table block-table-md">
+        <div class="block-table__cell col-md-6">
+          <section class="section-form-contact section-form-contact_color_white bg-primary">
+            <div class="ui-decor-1"><img src="{% static 'events/assets/media/general/ui-decor-1_wh.png' %}" alt="decor"></div>
+            <h2 class="ui-title-block"><span>Dvents</span> Feedback Form</h2>
+            <div class="ui-subtitle-block">Please give us your valuable feedback .</div>
+            
+                  {%if  messages%}
+                    {%for message in messages %}
+                               
+                      <script type="text/javascript">
+                                   
+                                   window.setTimeout(function() {
+                                 $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                                 $(this).remove(); 
+                                 });
+                                }, 5000);
+                      </script>         
+                      <div class="container my-4">
+                        <div class="alert alert-{{message.tags}}" role="alert">
+                          <button type="button" class="close" style="color: Green" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 style="font-family: Arial"><font color="Green"><strong>Success! </strong> {{message}}</font></h4>
+                        </div>
+
+                      </div>
+                                            
+                                       
+                    {%endfor%}
+                  {%endif%}
+            
+            <form  action="{% url 'feedback' %}"  method="POST">
+             {% csrf_token %}
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="fullname">Full Name</label>
+                  <input id="fullname" type="text"  name="fullname"  required="required" class="form-control"/>
+                  <label for="user-phone">Mobile Nummber</label>
+                  <input id="user-phone" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" name="userphone"  class="form-control"/>
+                </div>
+                <div class="col-md-6">
+                  <label for="user-email">Email Id</label>
+                  <input id="user-email" type="email" name="useremail" class="form-control"/>
+                  <label for="user-subject">Subject</label>
+                  <input id="user-subject" type="text" name="usersubject" class="form-control"/>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <label for="user-message">Your Message</label>
+                  <textarea id="user-message" rows="3"  name = "Message" required="required" class="form-control"></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <button type="submit" class="btn btn-default">Send Message</button>
+                </div>
+              </div>
+            </form>
+            <!-- end .b-form-contact-->
+            
+          </section>
+        </div>
+        <div class="block-table__cell col-md-6"><img src="{% static 'events/assets/media/content/960x750/2.jpg' %}" alt="foto"></div>
+      </div>
+      
+
+
+      <!-- ==========================-->
+      <!-- Footer-->
+      <!-- ==========================-->
+      <footer class="footer">
+        <div class="footer__main">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="text-center"><a href="home.html" class="footer__logo"><img src="{% static 'events/assets/media/general/logo.png' %}" alt="Logo" class="img-responsive"/></a></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="footer-section">
+                  <h3 class="footer-section__title ui-title-inner"><i class="ui-decor-2 bg-primary"></i> Address </h3>
+                   <div class="footer__contact"><i class="icon icon-map"></i>38-2 Vishnu Complex, <br>&emsp;&emsp; Vaniyavad Circle, <br>&emsp;&emsp; College Road , <br>&emsp;&emsp; Nadiad.</div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <section class="footer-section">
+                  <h3 class="footer-section__title ui-title-inner"><i class="ui-decor-2 bg-primary"></i> Keep In Touch</h3>
+                 
+                  <div class="footer__contact"><i class="icon icon-call-in"></i> <a href="tel:+911234567890">(+91) 123 456 7890</div>
+                  <div class="footer__contact"><i class="icon icon-envelope-open"></i><a href="mailto:dvents@gmail.com"> info@dvents.org</a></div>
+                  <div class="footer__contact"><i class="icon icon-clock"></i> Mon - Fri 9.00 am - 6.00 pm</div>
+                </section>
+              </div>
+              
+              <div class="col-md-4  ">
+                <section class="footer-section">
+                  <h3 class="footer-section__title ui-title-inner"><i class="ui-decor-2 bg-primary"></i>Social Media</h3>
+                  <ul class="social-net list-inline pull-left">
+                  <li class="social-net__item"><a href="https://www.youtube.com/" target="_blank" class="social-net__link text-primary_h"><i class="icon fa fa-youtube"></i></a></li>
+                  <li class="social-net__item"><a href="https://twitter.com/explore" target="_blank"class="social-net__link text-primary_h"><i class="icon fa fa-twitter"></i></a></li>
+                  <li class="social-net__item"><a href="https://www.facebook.com/" target="_blank"class="social-net__link text-primary_h"><i class="icon fa fa-facebook"></i></a></li>
+                
+                  <li class="social-net__item"><a href="https://www.instagram.com/"target="_blank" class="social-net__link text-primary_h"><i class="icon fa fa-instagram"></i></a></li>
+                </ul>
+                <!-- end social-list-->
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="copyright">© 2020<strong> Dvents</strong> - The Events Specialists All Rights Reserved.</div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- .footer-->
+      
+    </div>
+    <!-- end layout-theme-->
+    
+    
+    <!-- ++++++++++++-->
+    <!-- MAIN SCRIPTS-->
+    <!-- ++++++++++++-->
+    <script src="{% static 'events/assets/libs/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'events/assets/libs/jquery-migrate-1.2.1.js' %}"></script>
+    <!-- Bootstrap-->
+    <script src="{% static 'events/assets/libs/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- User customization-->
+    <script src="{% static 'events/assets/js/custom.js' %}"></script>
+    <!---->
+
+    <!-- Slider 1-->
+    <script src="{% static 'events/assets/plugins/owl-carousel/owl.carousel.min.js' %}"></script>
+    <!-- Slider 2-->
+    <script src="{% static 'events/assets/plugins/bxslider/vendor/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'events/assets/plugins/bxslider/vendor/jquery.fitvids.js' %}"></script>
+    <script src="{% static 'events/assets/plugins/bxslider/jquery.bxslider.min.js' %}"></script>
+    <!-- Pop-up window-->
+    <script src="{% static 'events/assets/plugins/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+    <!-- Headers scripts-->
+    <script src="{% static 'events/assets/plugins/headers/slidebar.js' %}"></script>
+    <script src="{% static 'events/assets/plugins/headers/header.js' %}"></script>
+    <!-- Mail scripts-->
+    <script src="{% static 'events/assets/plugins/jqBootstrapValidation.js' %}"></script>
+    <!-- Parallax-->
+    <script src="{% static 'events/assets/plugins/stellar/jquery.stellar.min.js' %}"></script>
+    <!-- Filter and sorting images-->
+    <script src="{% static 'events/assets/plugins/isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'events/assets/plugins/isotope/imagesLoaded.js' %}"></script>
+    <!-- Progress numbers-->
+    <script src="{% static 'events/assets/plugins/rendro-easy-pie-chart/jquery.easypiechart.min.js' %}"></script>
+    <script src="{% static 'events/assets/plugins/rendro-easy-pie-chart/waypoints.min.js' %}"></script>
+    <!-- Animations-->
+    <script src="{% static 'events/assets/plugins/scrollreveal/scrollreveal.min.js' %}"></script>
+    <!-- Main slider-->
+    <script src="{% static 'events/assets/plugins/slider-pro/jquery.sliderPro.min.js' %}"></script>
+  </body>
+
+
+</html>

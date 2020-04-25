@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+   
+    <title>Dvents</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- External CSS libraries -->
+    <link type="text/css" rel="stylesheet" href="{% static 'accounts/assets-1/css/bootstrap.min.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'accounts/assets-1/fonts/font-awesome/css/font-awesome.min.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'accounts/assets-1/fonts/flaticon/font/flaticon.css' %}">
+
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="{% static 'accounts/assets-1/img/favicon.ico" type="image/x-icon" >
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPoppins:400,500,700,800,900%7CRoboto:100,300,400,400i,500,700">
+
+    <!-- Custom Stylesheet -->
+    <link type="text/css" rel="stylesheet" href="{% static 'accounts/assets-1/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" id="style_sheet" href="{% static 'accounts/assets-1/css/skins/default.css' %}">
+
+</head>
+<body id="top">
+<!-- Login 20 start -->
+<div class="login-20">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-4 col-lg-5 col-md-12 bg-color-10">
+                <div class="form-section">
+                    <div class="logo clearfix">
+                        <a href="{% url 'home' %}">
+                            <img src="{% static 'events/assets/media/general/logo-dark.png' %}" alt="logo">
+                        </a>
+                    </div>
+                    <h3>Sign into your account</h3>
+                    {% if  messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{messages.tags}}"><h6>{{message}}</h6></div>
+
+                    {% endfor %}
+                    {% endif %}
+                    <div class="login-inner-form">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group form-box">
+
+                                <input type="text" name="username" class="input-text" placeholder="enter username">
+                                <i class="flaticon-mail-2"></i>
+                            </div>
+                            <div class="form-group form-box">
+                                <input type="Password" name="password" class="input-text" placeholder="enter Password">
+                                <i class="flaticon-password"></i>   
+                            </div>
+                            
+                            <div class="form-group">
+                                <button type="submit" class="btn-md btn-theme btn-block">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                    <p>Don't have an account? <a href="{% url 'register' %}" class="thembo"> Register here</a></p>
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-7 col-md-12 bg-img none-992">
+                <div class="info">
+                    <h1>Welcome to Dvents</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Login 20 end -->
+
+<!-- External JS libraries -->
+<script src="{% static 'accounts/assets-1/js/jquery-2.2.0.min.js' %}"></script>
+<script src="{% static 'accounts/assets-1/js/popper.min.js' %}"></script>
+<script src="{% static 'accounts/assets-1/js/bootstrap.min.js' %}"></script>
+<!-- Custom JS Script -->
+</body>
+
+</html>

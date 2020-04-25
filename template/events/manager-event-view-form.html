@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+{% load static %}
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <title>Dvents</title>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta name="HandheldFriendly" content="true"/>
+
+<link rel="stylesheet" href="{% static 'events/assets/css/master.css' %}"/>
+<link rel="icon" type="image/x-icon" href="{% static 'events/favicon.ico' %}"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+</head>
+  <body>
+    <!-- Loader-->
+    <div id="page-preloader"><span class="spinner border-t_second_b border-t_prim_a"></span></div>
+    <!-- Loader end-->
+    
+    <div data-header="sticky" data-header-top="200" data-canvas="container" class="l-theme animated-css">
+  
+      
+      <!-- ==========================-->
+      <!-- MOBILE MENU-->
+      <!-- ==========================-->
+      <div data-off-canvas="mobile-slidebar left overlay">
+        <ul class="nav navbar-nav">
+                      <li><a href="{% url 'login' %}" >User</a></li>
+                      <li><a href="{% url 'login' %}" >Manager</a></li>
+                      <li><a href="{% url 'logout' %}" >Logout</a></li>
+                   
+                </ul>
+      </div>
+    
+        
+        
+      <header class="header header-boxed-width header-background-trans header-logo-black header-topbarbox-1-left header-topbarbox-2-right header-navibox-1-left header-navibox-2-right">
+
+        <div class="container container-boxed-width">
+          <nav id="nav" class="navbar">
+            <div class="container">
+              <div class="header-navibox-1">
+                <!-- Mobile Trigger Start-->
+                <button class="menu-mobile-button visible-xs-block js-toggle-mobile-slidebar toggle-menu-button"><i class="toggle-menu-button-icon"><span></span><span></span><span></span><span></span><span></span><span></span></i></button>
+                <!-- Mobile Trigger End--><a href="{% url 'home' %}" class="navbar-brand scroll"><img src="{% static 'events/assets/media/general/logo.png' %}" alt="logo" class="normal-logo"/><img src="{% static 'events/assets/media/general/logo-dark.png' %}" alt="logo" class="scroll-logo hidden-xs"/></a>
+              </div>
+              {% if user.is_authenticated %}
+              <div class="header-navibox-2">
+                <ul class="yamm main-menu nav navbar-nav">
+                  <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle">{{request.user}}<b class="caret"></b></a>
+                    <ul role="menu" class="dropdown-menu">
+                      <li><a href="{% url 'logout' %}" >Logout</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              {% else %}
+
+              <div class="header-navibox-2">
+                <ul class="yamm main-menu nav navbar-nav">
+                  <li class="dropdown"><a  data-toggle="dropdown" class="dropdown-toggle">Login <b class="caret"></b></a>
+                    <ul role="menu" class="dropdown-menu">
+                      <li><a href="{% url 'login' %}" >User</a></li>
+                      <li><a href="{% url 'login' %}" >Manager</a></li>
+                      
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              {% endif %}
+
+            </div>
+          </nav>
+        </div>
+      </header>
+      <!-- end .header-->
+
+      <!-- ==========================-->
+      <!-- Form of event registrations-->
+      <!-- ==========================-->
+      <div class="block-table block-table-md">
+        <div class="block-table__cell col-md-12">
+          <section data-stellar-background-ratio="0.1" class="section-form-contact section-form-contact_color_white section-texture bg-danger">
+            <div class="container">
+             <div class="row">
+              <h2 class="typography-title" align="middle"><font color="black">Event Details</font></h2>
+              <div class="col-md-11 col-md-offset-2 ">
+                
+                <br>
+                <br>
+                {% for post in events %}
+
+                <div class="row">
+                  <div class="col-md-9">
+                    <form action="{% url 'manager_event_view_form' post.id %}" method="POST" >
+                      {% csrf_token %}
+                      <div class="row">
+
+                        <div class="col-md-6">
+                          <font color="black"><label for="budget">First Name :</label></font>
+                          <input type="text" name="fname" value="{{post.user_id.first_name}}" disabled class="form-control"/>
+                        </div>
+                        
+                          <div class="col-md-6">
+                            <font color="black"><label for="budget">Middle Name :</label></font>
+                          <input type="text" placeholder="fName" value="{{post.profile_id.middle_name}}"disabled class="form-control"/>
+                        </div>
+                        <div class="col-md-6">
+                          <font color="black"><label for="budget">Last Name :</label></font>
+                          <input type="text" placeholder="lName" value="{{post.user_id.last_name}}"disabled class="form-control"/>
+                        </div>
+                        <div class="col-md-6">
+                          <font color="black"><label for="budget">Email Id :</label></font>
+                          <input type="text" placeholder="Name" value={{post.user_id.email}} disabled class="form-control"/>
+                        </div>
+                        <div class="col-md-6">
+                          <font color="black"><label for="budget">Mobile :</label></font>
+                          <input type="text" placeholder="Name" value="{{post.profile_id.mobile}}" disabled class="form-control"/>
+                        </div>
+                        <div class="col-md-6">
+                          <font color="black"><label for="budget">Budget :</label></font>
+                          <input type="text" placeholder="Name" value="{{post.budget}}"disabled class="form-control"/>
+                        </div>
+                        <div class="col-md-6">
+                          <font color="black"><label for="budget">Event Type :</label></font>
+                          <input type="text" placeholder="Name" value="{{post.event_type}}"disabled class="form-control"/>
+                        </div>
+                        <div class="col-md-6">
+                          <font color="black"><label for="budget">Event Date :</label></font>
+                          <input type="text" placeholder="Name" value="{{post.event_date}}"disabled class="form-control"/>
+                        </div>
+                        <div class="col-md-12">
+                          <font color="black"><label for="budget">Event Location :</label></font>
+                          <textarea class="form-control" disabled>{{post.location}}</textarea>
+                        </div>
+                        <div class="col-md-6">
+                          <font color="black"><label for="budget">City :</label></font>
+                          <input type="text" placeholder="Name" disabled value="{{post.city}}" class="form-control"/>
+                        </div>
+                        <div class="col-md-6">
+                          <font color="black"><label for="budget">State :</label></font>
+                          <input type="text"  value="{{post.state}}" disabled class="form-control"/>
+                        </div>
+                      </div>
+                      <font color="black"><label for="budget"><h4><b>Event requirements </b></h4></label></font>
+                      <div class="row">
+                      
+                
+                      <br>
+                      {% if post.Sound_system != 'not_enroll' %}
+                        <div class="col-md-6">
+                          <font color="black"><label for="Sound_system">Sound system :</label></font>
+                         <select class="form-control" name="soundsystem"  id="Sound_system" required>
+                              <option value="{{post.Sound_system}}">{{post.Sound_system}}</option>
+                              <option value="need_to_work">NEED TO WORK</option>
+                              <option value="in_process">IN PROCESS </option>
+                              <option value="done">DONE</option>
+                            </select>
+                           
+                        </div>
+                        {% endif %}
+                        {% if post.Catering != 'not_enroll' %}
+                        <div class="col-md-6">
+                          <font color="black"><label for="Catering">Catering :</label></font>
+                       <select class="form-control" name="catering"  id="Catering" required>
+                              <option value="{{post.Catering}}">{{post.Catering}}</option>
+                              <option value="need_to_work">NEED TO WORK</option>
+                              <option value="in_process">IN PROCESS </option>
+                              <option value="done">DONE</option>
+                            </select>
+                         
+                        </div>
+                        {% endif %}
+                        {% if post.Projector != 'not_enroll' %}
+                        <div class="col-md-6">
+                          <font color="black"><label for="Projector">Projector :</label></font>
+                            <select class="form-control" name="projector"  id="Projector" required>
+                              <option value="{{post.Projector}}">{{post.Projector}}</option>
+                              <option value="need_to_work">NEED TO WORK</option>
+                              <option value="in_process">IN PROCESS </option>
+                              <option value="done">DONE</option>
+                            </select>
+                           </div>
+                           {% endif %}
+                        
+                         {% if post.Decoration != 'not_enroll' %}
+                        <div class="col-md-6">
+                          <font color="black"><label for="Decoration">Decoration :</label></font>
+                        <select class="form-control" name="decoration"  id="Decoration" required>
+                              <option value="{{post.Decoration}}">{{post.Decoration}}</option>
+                              <option value="need_to_work">NEED TO WORK</option>
+                              <option value="in_process">IN PROCESS </option>
+                              <option value="done">DONE</option>
+                            </select>
+                         
+                        </div>
+                        {% endif %}
+                         {% if post.Photographer != 'not_enroll' %}
+                        <div class="col-md-6">
+                          <font color="black"><label for="Photographer">Photographer :</label></font>
+                           <select class="form-control" name="photographer"  id="Photographer" required>
+                              <option value="{{post.Photographer}}">{{post.Photographer}}</option>
+                              <option value="need_to_work">NEED TO WORK</option>
+                              <option value="in_process">IN PROCESS </option>
+                              <option value="done">DONE</option>
+                            </select>
+                          </div>
+                         {% endif %}
+                        <div class="col-md-12">
+                          <font color="black"><label for="budget">comment :</label></font>
+                          <textarea rows="3" disabled class="form-control" >{{post.comment}}</textarea>
+                           </div>
+                      </div>
+
+                      <div class="row">
+                        <div class=" col-md-offset-5">
+                            {% if post.confirmation == 'accepted' %}
+                              <button type="submit" name="action" value="update"class="btn">Update</button>
+                              <button type="submit" name="action" value="done"class="btn">Done</button>
+                            {% else %}
+                             <button type="submit" name="action" value="accept"class="btn">Accept</button>
+                               <button type="submit"name="action" value="reject" class="btn">Reject</button>
+                            {% endif %}
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  </div>
+
+                  {% endfor %}
+                </div>
+              </div> 
+       
+          </div>
+        </section>
+        </div>
+      </div>
+
+
+      
+    
+
+      
+
+
+      <!-- ==========================-->
+      <!-- Footer-->
+      <!-- ==========================-->
+      <footer class="footer">
+        <div class="footer__main">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="text-center"><a href="home.html" class="footer__logo"><img src="{% static 'events/assets/media/general/logo.png' %}" alt="Logo" class="img-responsive"/></a></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="footer-section">
+                  <h3 class="footer-section__title ui-title-inner"><i class="ui-decor-2 bg-primary"></i> Address </h3>
+                   <div class="footer__contact"><i class="icon icon-map"></i>38-2 Vivamus consequat, <br>&emsp;&emsp; felis at aliquam elementum, <br>&emsp;&emsp; massa sem dignissim , <br>&emsp;&emsp; ante.</div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <section class="footer-section">
+                  <h3 class="footer-section__title ui-title-inner"><i class="ui-decor-2 bg-primary"></i> Keep In Touch</h3>
+                 
+                  <div class="footer__contact"><i class="icon icon-call-in"></i> <a href="tel:+911234567890">(+91) 123 456 7890</div>
+                  <div class="footer__contact"><i class="icon icon-envelope-open"></i><a href="mailto:dvents@gmail.com"> info@dvents.org</a></div>
+                  <div class="footer__contact"><i class="icon icon-clock"></i> Mon - Fri 9.00 am - 6.00 pm</div>
+                </section>
+              </div>
+              
+              <div class="col-md-4  ">
+                <section class="footer-section">
+                  <h3 class="footer-section__title ui-title-inner"><i class="ui-decor-2 bg-primary"></i>Social Media</h3>
+                  <ul class="social-net list-inline pull-left">
+                  <li class="social-net__item"><a href="https://www.youtube.com/" target="_blank"class="social-net__link text-primary_h"><i class="icon fa fa-youtube"></i></a></li>
+                  <li class="social-net__item"><a href="https://twitter.com/explore" target="_blank"class="social-net__link text-primary_h"><i class="icon fa fa-twitter"></i></a></li>
+                  <li class="social-net__item"><a href="https://www.facebook.com/"target="_blank" class="social-net__link text-primary_h"><i class="icon fa fa-facebook"></i></a></li>
+                
+                  <li class="social-net__item"><a href="https://www.instagram.com/" target="_blank"class="social-net__link text-primary_h"><i class="icon fa fa-instagram"></i></a></li>
+                </ul>
+                <!-- end social-list-->
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="copyright">© 2020<strong> Dvents</strong> - The Events Specialists All Rights Reserved.</div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- .footer-->
+      
+    </div>
+    <!-- end layout-theme-->
+    
+    
+    <!-- ++++++++++++-->
+    <!-- MAIN SCRIPTS-->
+    <!-- ++++++++++++-->
+    <script src="{% static 'events/assets/libs/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'events/assets/libs/jquery-migrate-1.2.1.js' %}"></script>
+    <!-- Bootstrap-->
+    <script src="{% static 'events/assets/libs/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- User customization-->
+    <script src="{% static 'events/assets/js/custom.js' %}"></script>
+    <!---->
+
+    <!-- Slider 1-->
+    <script src="{% static 'events/assets/plugins/owl-carousel/owl.carousel.min.js' %}"></script>
+    <!-- Slider 2-->
+    <script src="{% static 'events/assets/plugins/bxslider/vendor/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'events/assets/plugins/bxslider/vendor/jquery.fitvids.js' %}"></script>
+    <script src="{% static 'events/assets/plugins/bxslider/jquery.bxslider.min.js' %}"></script>
+    <!-- Pop-up window-->
+    <script src="{% static 'events/assets/plugins/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+    <!-- Headers scripts-->
+    <script src="{% static 'events/assets/plugins/headers/slidebar.js' %}"></script>
+    <script src="{% static 'events/assets/plugins/headers/header.js' %}"></script>
+    <!-- Mail scripts-->
+    <script src="{% static 'events/assets/plugins/jqBootstrapValidation.js' %}"></script>
+    <!-- Parallax-->
+    <script src="{% static 'events/assets/plugins/stellar/jquery.stellar.min.js' %}"></script>
+    <!-- Filter and sorting images-->
+    <script src="{% static 'events/assets/plugins/isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'events/assets/plugins/isotope/imagesLoaded.js' %}"></script>
+    <!-- Progress numbers-->
+    <script src="{% static 'events/assets/plugins/rendro-easy-pie-chart/jquery.easypiechart.min.js' %}"></script>
+    <script src="{% static 'events/assets/plugins/rendro-easy-pie-chart/waypoints.min.js' %}"></script>
+    <!-- Animations-->
+    <script src="{% static 'events/assets/plugins/scrollreveal/scrollreveal.min.js' %}"></script>
+    <!-- Main slider-->
+    <script src="{% static 'events/assets/plugins/slider-pro/jquery.sliderPro.min.js' %}"></script>
+  </body>
+
+
+</html>
